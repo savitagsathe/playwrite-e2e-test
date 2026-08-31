@@ -1,0 +1,52 @@
+/**
+ Single click on button or link
+.click()  
+
+// Double click on button or link
+.dblclick()
+
+// Right click on button or link (context menu)
+.click({button: 'right'})
+
+// Press Enter key on focused element
+.press('Enter')
+
+// Hover over element to show tooltips or trigger hover effects
+.hover()
+
+// Click with custom timeout
+.click({timeout: 5000})
+
+
+textBox 
+**/
+//successful login
+//await page.getByLabel("Username").fill("John Doe");
+
+import { test, expect } from "@playwright/test";
+
+test.describe("Make appointment", () => {
+  test.beforeEach(async ({ page }) => {
+  // Navigate to the application
+  await page.goto("https://katalon-demo-cura.herokuapp.com/");
+
+  // Verify home page
+  await expect(page).toHaveTitle("CURA Healthcare Service");
+  await expect(page.locator("h1")).toHaveText("CURA Healthcare Service");
+
+  // Click on the Make Appointment button
+  await page.getByRole("link", { name: "Make Appointment" }).click();
+
+  // Verify login page
+  await expect(
+    page.getByText("Please login to make appointment.")
+  ).toBeVisible();
+
+  // Login with valid credentials
+  await page.getByLabel("Username").fill("John Doe");
+  await page.getByLabel("Password").fill("ThisIsNotAPassword");
+  await page.getByRole("button", { name: "Login" }).click();
+
+  // Verify Make Appointment page
+  await expect(page.locator("h2")).toHaveText("Make Appointment");
+});

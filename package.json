@@ -4,6 +4,18 @@
   "description": "playwrite-e2e-test with AI capabilities incl MCP",
   "main": "hello.js",
   "scripts": {
+            "demo:hooks": "npx playwright test tests/demo/hooks-demo.spec.ts --headed",
+
+    "pw-adv-cap": "DEBUG=pw:api npx playwright test tests/demo/pw.advance.cap.make.aptmnt.spec.ts --headed",
+    
+        "pw-basic-cap": "npx playwright test tests/demo/pw.basic.cap.make.aptmnt.spec.ts --headed",
+
+    "debug-trace": "npx playwright test tests/demo/debug.make.aptmnt.spec.ts --trace on",
+
+    "debug-ui": "npx playwright test tests/demo/debug.make.aptmnt.spec.ts --ui --headed",
+    "debug:cli": "PWDEBUG=1 npx playwright test tests/demo/debug.make.aptmnt.spec.ts --headed",
+    "debug": "npx playwright test tests/demo/debug.make.aptmnt.spec.ts --headed",
+    "make-appointment": "npx playwright test tests/functional/make.aptmnt.spec.ts --headed",
     "login": "npx playwright test tests/functional/login.spec.ts --headed",
     "demo": "npx playwright test tests/demo/mytest.spec.ts --headed"
   },
@@ -12,6 +24,7 @@
   "license": "ISC",
   "devDependencies": {
     "@playwright/test": "^1.61.1",
-    "@types/node": "^26.1.1"
+    "@types/node": "^26.1.1",
+    "allure-playwright": "^3.10.2"
   }
 }
